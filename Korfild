@@ -1,0 +1,138 @@
+import telebot
+from telebot import types
+
+b = 0
+
+bot = telebot.TeleBot('5974777231:AAEX3J2G_6NE8M5TC3GHizZpyHXLXf6BUVo')
+
+@bot.message_handler(commands=['start'])
+def start(message):
+    mess = f'Восап нигер <b>{message.from_user.first_name} <u>{message.from_user.last_name}</u></b>. Ты попал в нашу хату.'
+    bot.send_message(message.chat.id, mess, parse_mode='html')
+
+@bot.message_handler(commands=['inf'])
+def inf(message):
+    bot.send_message(message.chat.id, message, parse_mode='html')
+
+
+
+@bot.message_handler(commands=['photo'])
+def send(message):
+    global b
+    if b == 0:
+        b += 1
+        photo = open('tg.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
+    elif b == 1:
+        b += 1
+        photo = open('c.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
+
+    elif b == 2:
+        b += 1
+        photo = open('v.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
+    elif b == 3:
+        b += 1
+        photo = open('l.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
+
+    elif b == 4:
+        b += 1
+        photo = open('k.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
+
+    elif b == 5:
+        b += 1
+        photo = open('j.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
+
+    elif b == 6:
+        b += 1
+        photo = open('h.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
+
+    elif b == 7:
+        b += 1
+        photo = open('g.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
+
+    elif b == 8:
+        b += 1
+        photo = open('f.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
+
+    elif b == 9:
+        b += 1
+        photo = open('b.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
+
+    else:
+        photo = open('end.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
+        b = 0
+
+
+@bot.message_handler(commands=['домофон'])
+def send(message):
+    vidio = open('1289502167785159294.mp4 ', 'rb')
+    bot.send_video(message.chat.id, vidio)
+
+@bot.message_handler(commands=['Майкл Джордан'])
+def send(message):
+    vidio = open('5959225855538430078.mp4 ', 'rb')
+    bot.send_video(message.chat.id, vidio)
+
+@bot.message_handler(commands=['drill'])
+def drill(message):
+    vidio = open('trim.29DE683B-AA0C-4E97-B375-829248AADB5C.mov ', 'rb')
+    bot.send_video(message.chat.id, vidio)
+
+@bot.message_handler(commands=['sui'])
+def sui(message):
+    vidio = open('IMG_2390.MP4 ', 'rb')
+    bot.send_video(message.chat.id, vidio)
+
+#@bot.message_handler(commands=['bomba'])
+#def bomba(message):
+    #vidio = open('F59Pkb5VMwhVK3tIEdsw0BUySiPZInOnqdF2kbRpOJsvCT52S7WXkfVLkskWhK9nmXHs.mp3 ', 'rb')
+    #bot.send_video(message.chat.id, vidio)
+    #vidio = open('gtPLgH9xeL0jB2HUQnPDxq_OZiLiSLXnwJkn2kIgVgCImNgz2kv7nFRNCLlVNtM1HvAM.mp3  ', 'rb')
+    #bot.send.video(message.chat.id, vidio)
+
+#@bot.message_handler(commands=['bomba'])
+#def bomba(message):
+    #audio = open('F59Pkb5VMwhVK3tIEdsw0BUySiPZInOnqdF2kbRpOJsvCT52S7WXkfVLkskWhK9nmXHs.mp3 ', 'rb')
+    #bot.send_audio(message.from_user.id, audio)
+
+@bot.message_handler(commands=['owner'])
+def owner(message):
+    markup = types.InlineKeyboardMarkup()
+    markup.add(types.InlineKeyboardButton('Владелец бота:', url='https://web.telegram.org/z/#932327964'))
+    bot.send_message(message.chat.id, 'По всем недороботкам пишите в лс', reply_markup=markup)
+
+
+@bot.message_handler(commands=['commands'])
+def information(message):
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    start = types.InlineKeyboardButton('/start')
+    info = types.InlineKeyboardButton('/info')
+    markup.add(start, info)
+    bot.send_message(message.chat.id, 'chose one', reply_markup=markup)
+
+@bot.message_handler(commands=['info'])
+def informations(message):
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    photo = types.InlineKeyboardButton('/photo')
+    video1 = types.InlineKeyboardButton('/домофон')
+    video2 = types.InlineKeyboardButton('/Майкл Джордан')
+    owner = types.InlineKeyboardButton('/owner')
+    drill = types.InlineKeyboardButton('/drill')
+    sui = types.InlineKeyboardButton('/sui')
+    markup.add(photo, video1, video2, owner, drill, sui,)
+    bot.send_message(message.chat.id, 'chose one', reply_markup=markup)
+
+
+
+bot.polling(none_stop=True)
+
